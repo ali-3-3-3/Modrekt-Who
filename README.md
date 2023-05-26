@@ -61,15 +61,15 @@ We hope to improve NUS Mods to be more user friendly and beneficial to students 
 
 ## Mockup
 The technical proof is as shown below.
-![alt text](https://github.com/aliya-333/Modrekt-Who/blob/4049f43e72755f633174cdb35b1edd6e59286a68/login%20page%20.png)
+![alt text](https://github.com/aliya-333/Modrekt-Who/blob/4049f43e72755f633174cdb35b1edd6e59286a68/login%20page%20.png) <br>
 Fig. 2.1: Login and Registration
 
-![alt text](https://github.com/aliya-333/Modrekt-Who/blob/4049f43e72755f633174cdb35b1edd6e59286a68/drop%20down%20menu.png)
+![alt text](https://github.com/aliya-333/Modrekt-Who/blob/4049f43e72755f633174cdb35b1edd6e59286a68/drop%20down%20menu.png) <br>
 Fig 2.2: Drop down menu showing the various NusMods functions
 
-![alt text](https://github.com/aliya-333/Modrekt-Who/blob/4049f43e72755f633174cdb35b1edd6e59286a68/timetable%20.png)
+![alt text](https://github.com/aliya-333/Modrekt-Who/blob/4049f43e72755f633174cdb35b1edd6e59286a68/timetable%20.png) <br>
 Fig 2.3: View of Timetable
 
-![alt text](https://github.com/aliya-333/Modrekt-Who/blob/4049f43e72755f633174cdb35b1edd6e59286a68/modules.png)
+![alt text](https://github.com/aliya-333/Modrekt-Who/blob/4049f43e72755f633174cdb35b1edd6e59286a68/modules.png) <br>
 Fig 2.4: View of Modules
 
