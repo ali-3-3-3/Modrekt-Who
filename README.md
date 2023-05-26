@@ -15,10 +15,8 @@ We hope to improve NUS Mods to be more user friendly and beneficial to students 
 
 ## User Stories: 
 1. As a student who uses multiple devices, I want to be able to access my timetable conveniently across all devices without having to input my modules every time.
-2. As a student who has many assignments to keep track of, I want to be able to see all the deadlines in a single platform so I can plan my timetable accordingly.
-3. As a student who finds it hard to meet up with friends with busy schedules, I want to be able to easily share my timetable with friends instead of resending it every semester.
-4. As a professor or teaching assistant who wishes to communicate effectively with my students, I want to be able to ensure my students are aware of any changes in deadlines or venues without having to constantly send out mass announcements to remind them.
-5. As an administrator who wants to ensure a positive experience for all users of the system, I want to be able to single out any individual abusing the system, warn them and ban them if they continue to cause problems.
+2. As a student who finds it hard to meet up with friends with busy schedules, I want to be able to easily share my timetable with friends instead of resending it every semester.
+3. As an administrator who wants to ensure a positive experience for all users of the system, I want to be able to single out any individual abusing the system, warn them and ban them if they continue to cause problems.
 
 ## Scope of Project: 
 1. An application version of NUSMods that has all the current functionalities already available in the website.
