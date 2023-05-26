@@ -58,7 +58,7 @@ We hope to improve NUS Mods to be more user friendly and beneficial to students 
 | July  | 4    | Milestone 3 submission (26 July)                                                                        |
 
 ## Mockup
-The technical proof is as shown below.
+The technical proof is as shown below. <br>
 ![alt text](https://github.com/aliya-333/Modrekt-Who/blob/4049f43e72755f633174cdb35b1edd6e59286a68/login%20page%20.png) <br>
 Fig. 2.1: Login and Registration
 
