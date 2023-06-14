@@ -70,3 +70,4 @@ Fig 2.3: View of Timetable
 
 ![alt text](https://github.com/aliya-333/Modrekt-Who/blob/4049f43e72755f633174cdb35b1edd6e59286a68/modules.png) <br>
 Fig 2.4: View of Modules
+
