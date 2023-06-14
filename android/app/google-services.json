@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "31177953217",
+    "project_id": "modrekt-who",
+    "storage_bucket": "modrekt-who.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:31177953217:android:97d2aba9519d293aff2940",
+        "android_client_info": {
+          "package_name": "com.example.modrekt_who"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "31177953217-epd76n236mgh0rqdcu9kro72v81ofb66.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXaDGlBVBQf109DWwGswTCpTX1-0fd1rs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "31177953217-epd76n236mgh0rqdcu9kro72v81ofb66.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
