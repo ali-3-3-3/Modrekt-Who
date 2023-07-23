@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:modrekt_who/main.dart';
 import 'package:modrekt_who/login/utils.dart';
-import 'package:modrekt_who/screens/forgot_password_page.dart';
+import 'package:modrekt_who/screens/login_screens/forgot_password_page.dart';
 
 class LoginWidget extends StatefulWidget {
   final VoidCallback onClickedSignUp;
@@ -36,10 +36,18 @@ class _LoginWidgetState extends State<LoginWidget> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(
+                'Modrekt, Who?',
+                style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
               const SizedBox(height: 40),
               TextField(
                 controller: emailController,
-                cursorColor: Colors.white,
+                cursorColor: Theme.of(context).colorScheme.onPrimaryContainer,
                 textInputAction: TextInputAction.done,
                 decoration: const InputDecoration(labelText: 'Email'),
               ),
@@ -64,13 +72,14 @@ class _LoginWidgetState extends State<LoginWidget> {
               ),
               const SizedBox(height: 24),
               GestureDetector(
-                child: const Text(
+                child: Text(
                   'Forgot Password',
-                  style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    color: Colors.black87,
-                    fontSize: 20,
-                  ),
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                        decoration: TextDecoration.underline,
+                        decorationColor:
+                            Theme.of(context).colorScheme.onPrimaryContainer,
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      ),
                 ),
                 onTap: () {
                   Navigator.of(context).push(
@@ -80,18 +89,18 @@ class _LoginWidgetState extends State<LoginWidget> {
                   );
                 },
               ),
+              const SizedBox(height: 8),
               RichText(
                 text: TextSpan(
-                  style: const TextStyle(
-                      color: Color.fromARGB(221, 7, 4, 4), fontSize: 12),
                   children: [
                     TextSpan(
                       recognizer: TapGestureRecognizer()
                         ..onTap = widget.onClickedSignUp,
                       text: 'Sign Up',
-                      style: const TextStyle(
+                      style: TextStyle(
                         decoration: TextDecoration.underline,
-                        color: Colors.amber,
+                        color:
+                            Theme.of(context).colorScheme.onSecondaryContainer,
                       ),
                     )
                   ],

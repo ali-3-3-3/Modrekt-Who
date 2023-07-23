@@ -1,31 +1,91 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:modrekt_who/misc/list_of_modules_provider.dart';
+import 'package:modrekt_who/misc/module.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-class Timetable extends StatefulWidget {
+class Timetable extends ConsumerStatefulWidget {
   const Timetable({super.key});
 
   @override
-  State<Timetable> createState() => _TimetableState();
+  ConsumerState<Timetable> createState() => _TimetableState();
 }
 
-class _TimetableState extends State<Timetable> {
+class _TimetableState extends ConsumerState<Timetable> {
   @override
   Widget build(BuildContext context) {
+    final listOfModules = ref.watch(listOfModulesProvider);
+
     return Scaffold(
-        body: SfCalendar(
-          view: CalendarView.workWeek,
-          firstDayOfWeek: 1,
-          timeSlotViewSettings: const TimeSlotViewSettings(
-              startHour: 9,
-              endHour: 21,
-              nonWorkingDays: <int>[DateTime.saturday, DateTime.sunday]),
-          dataSource: MeetingDataSource(getAppointments()),
+      appBar: AppBar(
+        title: const Text(
+          'Timetable',
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ));
+      ),
+      body: Column(
+        children: [
+          SizedBox(
+            height: 600,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SfCalendar(
+                view: CalendarView.workWeek,
+                firstDayOfWeek: 1,
+                timeSlotViewSettings: const TimeSlotViewSettings(
+                    startHour: 9,
+                    endHour: 21,
+                    nonWorkingDays: <int>[DateTime.saturday, DateTime.sunday]),
+                dataSource: MeetingDataSource(getAppointments()),
+              ),
+            ),
+          ),
+          if (listOfModules.isNotEmpty)
+            Expanded(
+              child: ListView.builder(
+                itemCount: listOfModules.length,
+                itemBuilder: (context, index) {
+                  return Dismissible(
+                    key: ValueKey(listOfModules[index]),
+                    onDismissed: (direction) {
+                      ref
+                          .read(listOfModulesProvider.notifier)
+                          .toggleAddedModuleStatus(moduleList[index]);
+                      ScaffoldMessenger.of(context).clearSnackBars();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Module was removed from timetable.',
+                          ),
+                          duration: Duration(milliseconds: 200),
+                        ),
+                      );
+                    },
+                    background: Container(
+                      color:
+                          Theme.of(context).colorScheme.error.withOpacity(0.5),
+                    ),
+                    child: Row(
+                      children: [
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          '${index + 1}. ${listOfModules[index].title}',
+                          style: const TextStyle(
+                            color: Colors.redAccent,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+        ],
+      ),
+    );
   }
 }
 

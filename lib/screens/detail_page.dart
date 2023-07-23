@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:modrekt_who/misc/list_of_modules_provider.dart';
 import '../misc/module_timetable.dart';
 import '../misc/module.dart';
 
-class DetailsPage extends StatelessWidget {
+class DetailsPage extends ConsumerWidget {
   const DetailsPage({super.key, required this.i});
 
   final int i;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: Text(moduleList[i].title),
@@ -36,17 +38,22 @@ class DetailsPage extends StatelessWidget {
               )),
           Padding(
             padding: const EdgeInsets.fromLTRB(16.0, 10, 16, 10),
-            child: Text(moduleList[i].description),
+            child: Text(
+              moduleList[i].description,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onBackground,
+              ),
+            ),
           ),
-          const Padding(
-              padding: EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 0),
+          Padding(
+              padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 0),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Workload - 10 hours',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
                   ),
                 ),
               )),
@@ -57,14 +64,15 @@ class DetailsPage extends StatelessWidget {
                   for (var item in moduleList[i].workload) (getSquare(item))
                 ],
               )),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(16, 10, 16, 0),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 'Grading Basis',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
                 ),
               ),
             ),
@@ -73,12 +81,14 @@ class DetailsPage extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(16.0, 1, 16, 8),
               child: Column(
                 children: [
-                  for (var item in moduleList[i].exam) (getExam(item))
+                  for (var item in moduleList[i].exam) (getExam(item, context))
                 ],
               )),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(16, 4, 16, 0),
-            child: AddToTimetable(),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
+            child: AddToTimetable(
+              i: i,
+            ),
           ),
           const Padding(
               padding: EdgeInsets.fromLTRB(16, 10, 16, 0),
@@ -141,17 +151,30 @@ class DetailsPage extends StatelessWidget {
   }
 }
 
-class AddToTimetable extends StatefulWidget {
-  const AddToTimetable({super.key});
+class AddToTimetable extends ConsumerStatefulWidget {
+  const AddToTimetable({super.key, required this.i});
+
+  final int i;
 
   @override
-  State<AddToTimetable> createState() => AddToTimetableState();
+  ConsumerState<AddToTimetable> createState() => _AddToTimetableState();
 }
 
-class AddToTimetableState extends State<AddToTimetable> {
+class _AddToTimetableState extends ConsumerState<AddToTimetable> {
   bool _active = true;
 
   void _handleTap() {
+    final wasAdded = ref
+        .read(listOfModulesProvider.notifier)
+        .toggleAddedModuleStatus(moduleList[widget.i]);
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(wasAdded
+            ? 'Module was added to timetable.'
+            : 'Module was removed from timetable.'),
+      ),
+    );
     setState(() {
       _active = !_active;
     });

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:modrekt_who/misc/module_item.dart';
 import '../misc/module.dart';
 import 'detail_page.dart';
 
@@ -13,7 +14,10 @@ class _ModulesPageState extends State<ModulesPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text('Modules'),
+          title: const Text(
+            'Modules',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           actions: [
             IconButton(
               icon: const Icon(Icons.search),
@@ -29,117 +33,7 @@ class _ModulesPageState extends State<ModulesPage> {
         body: ListView.builder(
           itemCount: moduleList.length,
           itemBuilder: (context, index) {
-            return Card(
-                child: Column(children: [
-              ListTile(
-                  title: TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => DetailsPage(i: index)),
-                  );
-                },
-                child: Column(
-                  children: [
-                    Text(moduleList[index].title,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.redAccent,
-                        )),
-                    Text(moduleList[index].faculty,
-                        style: const TextStyle(
-                          color: Colors.grey,
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.fromLTRB(2.0, 10, 2, 0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(moduleList[index].description,
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                  )),
-                            ),
-                          ],
-                        )),
-                    const Padding(
-                        padding: EdgeInsets.fromLTRB(2, 10.0, 2.0, 0),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Prerequisites',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.fromLTRB(2.0, 1, 8, 0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(moduleList[index].prerequisite,
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                  )),
-                            )
-                          ],
-                        )),
-                    const Padding(
-                        padding: EdgeInsets.fromLTRB(2.0, 15.0, 2.0, 0),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Preclusions',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.fromLTRB(2.0, 1, 2, 0),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(moduleList[index].preclusion,
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                  )),
-                            )
-                          ],
-                        )),
-                    const Padding(
-                        padding: EdgeInsets.fromLTRB(2.0, 8.0, 2.0, 0),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Workload - 10 hours',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                        )),
-                    Padding(
-                        padding: const EdgeInsets.fromLTRB(2.0, 1, 2, 8),
-                        child: Row(
-                          children: [
-                            for (var item in moduleList[index].workload)
-                              (getSquare(item))
-                          ],
-                        ))
-                  ],
-                ),
-              ))
-            ]));
-          },
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.pop(context);
+            return ModuleItem(index: index);
           },
         ),
       );

@@ -25,11 +25,8 @@ class _NavBarState extends ConsumerState<NavBar> {
   @override
   Widget build(BuildContext context) {
     Widget activePage = const ModulesPage();
-    var activePageTitle = 'Modules';
-
     if (_selectedPageIndex == 1) {
       activePage = const Timetable();
-      activePageTitle = 'Timetable';
     }
 
     if (_selectedPageIndex == 2) {
@@ -37,9 +34,6 @@ class _NavBarState extends ConsumerState<NavBar> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(activePageTitle),
-      ),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
