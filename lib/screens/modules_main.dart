@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:modrekt_who/misc/module_item.dart';
+import 'package:modrekt_who/widgets/module_item.dart';
 import '../misc/module.dart';
 import 'detail_page.dart';
 
 class ModulesPage extends StatefulWidget {
   const ModulesPage({Key? key}) : super(key: key);
   @override
-  // ignore: library_private_types_in_public_api
   State<ModulesPage> createState() => _ModulesPageState();
 }
 

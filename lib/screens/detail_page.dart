@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:modrekt_who/misc/list_of_modules_provider.dart';
-import '../misc/module_timetable.dart';
+import '../widgets/module_timetable.dart';
 import '../misc/module.dart';
 
 class DetailsPage extends ConsumerWidget {
@@ -16,36 +16,43 @@ class DetailsPage extends ConsumerWidget {
         title: Text(moduleList[i].title),
       ),
       body: SingleChildScrollView(
-        child: Column(children: [
-          Padding(
+        child: Column(
+          children: [
+            Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 16, 16, 0),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text(moduleList[i].title,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.redAccent,
-                    )),
-              )),
-          Padding(
+                child: Text(
+                  moduleList[i].title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.redAccent,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 5, 16, 10),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text(moduleList[i].faculty,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                    )),
-              )),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16.0, 10, 16, 10),
-            child: Text(
-              moduleList[i].description,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onBackground,
+                child: Text(
+                  moduleList[i].faculty,
+                  style: const TextStyle(
+                    color: Colors.grey,
+                  ),
+                ),
               ),
             ),
-          ),
-          Padding(
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16.0, 10, 16, 10),
+              child: Text(
+                moduleList[i].description,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
+                ),
+              ),
+            ),
+            Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 8.0, 16.0, 0),
               child: Align(
                 alignment: Alignment.centerLeft,
@@ -56,96 +63,119 @@ class DetailsPage extends ConsumerWidget {
                     color: Theme.of(context).colorScheme.onPrimaryContainer,
                   ),
                 ),
-              )),
-          Padding(
+              ),
+            ),
+            Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 1, 16, 8),
               child: Row(
                 children: [
                   for (var item in moduleList[i].workload) (getSquare(item))
                 ],
-              )),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Grading Basis',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Grading Basis',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
                 ),
               ),
             ),
-          ),
-          Padding(
+            Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 1, 16, 8),
               child: Column(
                 children: [
                   for (var item in moduleList[i].exam) (getExam(item, context))
                 ],
-              )),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
-            child: AddToTimetable(
-              i: i,
+              ),
             ),
-          ),
-          const Padding(
-              padding: EdgeInsets.fromLTRB(16, 10, 16, 0),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
+              child: AddToTimetable(
+                i: i,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Timetable',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
                   ),
                 ),
-              )),
-          Padding(
+              ),
+            ),
+            Padding(
               padding: const EdgeInsets.fromLTRB(16, 4, 16, 5),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return ModuleTimetable(x: i);
-                  }));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return ModuleTimetable(x: i);
+                    }),
+                  );
                 },
                 child: Container(
                   width: 500,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.redAccent),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
+                      color: const Color.fromARGB(255, 153, 37, 37)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
                       "View Module Timetable",
                       textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      ),
                     ),
                   ),
                 ),
-              )),
-          Padding(
+              ),
+            ),
+            Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 1, 16, 8),
               child: Column(
                 children: [
-                  for (var item in moduleList[i].ticks) (getTick(item))
+                  for (var item in moduleList[i].ticks) (getTick(item, context))
                 ],
-              )),
-          Padding(
+              ),
+            ),
+            Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 2, 16, 8),
-              child: Column(children: [
-                const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Prerequisite Tree',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Prerequisite Tree',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
+                      ),
                     ),
                   ),
-                ),
-                //prerequisites
-                Text(moduleList[i].prerequisite),
-              ])),
-        ]),
+                  //prerequisites
+                  Text(
+                    moduleList[i].prerequisite,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onBackground,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -161,8 +191,6 @@ class AddToTimetable extends ConsumerStatefulWidget {
 }
 
 class _AddToTimetableState extends ConsumerState<AddToTimetable> {
-  bool _active = true;
-
   void _handleTap() {
     final wasAdded = ref
         .read(listOfModulesProvider.notifier)
@@ -175,26 +203,31 @@ class _AddToTimetableState extends ConsumerState<AddToTimetable> {
             : 'Module was removed from timetable.'),
       ),
     );
-    setState(() {
-      _active = !_active;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
+    final listOfModules = ref.watch(listOfModulesProvider);
+
+    final wasAdded = listOfModules.contains(moduleList[widget.i]);
     return GestureDetector(
       onTap: _handleTap,
       child: Container(
         width: 500,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: _active ? Colors.blue[500] : Colors.blue[300],
+          color: wasAdded
+              ? const Color.fromARGB(255, 9, 43, 70)
+              : const Color.fromARGB(255, 29, 72, 107),
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            _active ? 'Add to Timetable' : 'Remove from Timetable',
+            wasAdded ? 'Remove from Timetable' : 'Add to Timetable',
             textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimaryContainer,
+            ),
           ),
         ),
       ),

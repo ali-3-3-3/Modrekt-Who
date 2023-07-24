@@ -333,27 +333,42 @@ List<Module> moduleList = [
   )
 ];
 
-getTick(String checker) {
+getTick(String checker, BuildContext context) {
   switch (checker) {
     case 'SU':
-      return const Row(
+      return Row(
         children: [
-          Icon(Icons.check, color: Colors.green),
-          Text("Has S/U option for Undergraduate students only")
+          const Icon(Icons.check, color: Colors.green),
+          Text(
+            "Has S/U option for Undergraduate students only",
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onBackground,
+            ),
+          )
         ],
       );
     case 'SEM1':
-      return const Row(
+      return Row(
         children: [
-          Icon(Icons.check, color: Colors.green),
-          Text("Included in Semester 1's Course Planning Exercise")
+          const Icon(Icons.check, color: Colors.green),
+          Text(
+            "Included in Semester 1's Course Planning Exercise",
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onBackground,
+            ),
+          )
         ],
       );
     case 'SEM2':
-      return const Row(
+      return Row(
         children: [
-          Icon(Icons.check, color: Colors.green),
-          Text("Included in Semester 2's Course Planning Exercise")
+          const Icon(Icons.check, color: Colors.green),
+          Text(
+            "Included in Semester 2's Course Planning Exercise",
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onBackground,
+            ),
+          )
         ],
       );
     case 'Additional Information':

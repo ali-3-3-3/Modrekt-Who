@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:modrekt_who/screens/modules_main.dart';
-import 'package:modrekt_who/screens/timetable.dart';
+import 'package:modrekt_who/screens/timetable_screen.dart';
 
 class NavBar extends ConsumerStatefulWidget {
   const NavBar({super.key});
@@ -36,6 +36,7 @@ class _NavBarState extends ConsumerState<NavBar> {
     return Scaffold(
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Theme.of(context).colorScheme.onBackground,
         onTap: (index) {
           _selectPage(index);
         },

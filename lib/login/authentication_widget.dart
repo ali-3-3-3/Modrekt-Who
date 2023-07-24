@@ -6,13 +6,16 @@ import 'package:modrekt_who/login/utils.dart';
 import 'package:modrekt_who/login/verify_email_page.dart';
 import 'package:modrekt_who/main.dart';
 
-final theme = ThemeData(
+ColorScheme colorScheme = ColorScheme.fromSeed(
+  brightness: Brightness.dark,
+  seedColor: Colors.redAccent,
+);
+
+final theme = ThemeData().copyWith(
   useMaterial3: true,
-  colorScheme: ColorScheme.fromSeed(
-    brightness: Brightness.dark,
-    seedColor: Colors.redAccent,
-  ),
+  colorScheme: colorScheme,
   textTheme: GoogleFonts.latoTextTheme(),
+  cardColor: colorScheme.surface,
 );
 
 class AuthenticationWidget extends StatelessWidget {
@@ -20,7 +23,7 @@ class AuthenticationWidget extends StatelessWidget {
 
   @override
   Widget build(context) => MaterialApp(
-        theme: theme,
+        theme: theme.copyWith(scaffoldBackgroundColor: colorScheme.background),
         scaffoldMessengerKey: messengerKey,
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
