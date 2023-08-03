@@ -53,7 +53,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       final user = FirebaseAuth.instance.currentUser!;
       await user.sendEmailVerification();
     } catch (e) {
-      Utils.showSnackBar(e.toString());
+      Utils.showSnackBar(
+        e.toString(),
+      );
     }
   }
 
@@ -70,9 +72,13 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       'A verification email has been sent.',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSecondaryContainer),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 24),
@@ -83,7 +89,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                       ),
                       icon: const Icon(Icons.email, size: 32),
                       label: const Text(
-                        'Resent Email',
+                        'Resend Email',
                         style: TextStyle(fontSize: 24),
                       ),
                     ),

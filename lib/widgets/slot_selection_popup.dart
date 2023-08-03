@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 final formatter = DateFormat.jm();
+final dayformatter = DateFormat.EEEE();
 
 class SlotSelectionPopUp extends ConsumerWidget {
   const SlotSelectionPopUp({super.key, required this.module});

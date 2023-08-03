@@ -31,9 +31,11 @@ class _PopUpWidgetState extends ConsumerState<PopUpWidget> {
       showCupertinoDialog(
         context: context,
         builder: (ctx) => CupertinoAlertDialog(
-          content: Text(wasAdded
-              ? 'Module was added to timetable.'
-              : 'Module was removed from timetable.'),
+          content: Text(
+            wasAdded
+                ? 'Module was added to timetable.'
+                : 'Module was removed from timetable.',
+          ),
         ),
       );
     } else {
@@ -50,10 +52,15 @@ class _PopUpWidgetState extends ConsumerState<PopUpWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer(builder: (context, watch, _) {
-      ref.watch(timetableProvider.notifier);
-      var listOfSlots = ref.watch(timetableProvider);
-      return Column(
+    ref.watch(timetableProvider.notifier);
+    var listOfSlots = ref.watch(timetableProvider);
+    Widget content = const Center(
+      child: Text('There are no slots to choose here!'),
+    );
+
+    if (widget.slotsList[0] !=
+        [DateTime(2023, 7, 20, 9, 0, 0), DateTime(2023, 7, 20, 9, 0, 0)]) {
+      content = Column(
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(
@@ -80,10 +87,15 @@ class _PopUpWidgetState extends ConsumerState<PopUpWidget> {
                     Row(
                       children: [
                         Text(
-                          '${formatter.format(widget.slotsList[index][0])} - ${formatter.format(
+                          '${dayformatter.format(
+                            widget.slotsList[index][0],
+                          )}: ${formatter.format(
+                            widget.slotsList[index][0],
+                          )} - ${formatter.format(
                             widget.slotsList[index][1],
                           )}',
                           style: TextStyle(
+                              fontSize: 9,
                               color: Theme.of(context)
                                   .colorScheme
                                   .onPrimaryContainer),
@@ -126,6 +138,12 @@ class _PopUpWidgetState extends ConsumerState<PopUpWidget> {
           ),
         ],
       );
-    });
+    }
+
+    return Consumer(
+      builder: (context, watch, _) {
+        return content;
+      },
+    );
   }
 }
