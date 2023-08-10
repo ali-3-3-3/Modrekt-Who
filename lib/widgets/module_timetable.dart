@@ -9,23 +9,21 @@ class ModuleTimetable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SfCalendar(
-          view: CalendarView.workWeek,
-          firstDayOfWeek: 1,
-          timeSlotViewSettings: const TimeSlotViewSettings(
-              startHour: 8,
-              endHour: 21,
-              nonWorkingDays: <int>[DateTime.saturday, DateTime.sunday]),
-          dataSource: MeetingDataSource(getAppointments()),
+      appBar: AppBar(
+        title: Text(
+          moduleList[x].title,
         ),
-        floatingActionButton: FloatingActionButton(
-            backgroundColor: Colors.red,
-            hoverColor: Colors.red[300],
-            tooltip: 'Back',
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Icon(Icons.arrow_back_ios_new)));
+      ),
+      body: SfCalendar(
+        view: CalendarView.workWeek,
+        firstDayOfWeek: 1,
+        timeSlotViewSettings: const TimeSlotViewSettings(
+            startHour: 8,
+            endHour: 21,
+            nonWorkingDays: <int>[DateTime.saturday, DateTime.sunday]),
+        dataSource: MeetingDataSource(getAppointments()),
+      ),
+    );
   }
 
   List<Appointment> getAppointments() {

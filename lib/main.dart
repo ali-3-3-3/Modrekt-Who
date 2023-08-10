@@ -8,7 +8,11 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(const ProviderScope(child: AuthenticationWidget()));
+  runApp(
+    const ProviderScope(
+      child: AuthenticationWidget(),
+    ),
+  );
 }
 
 final navigatorKey = GlobalKey<NavigatorState>();
